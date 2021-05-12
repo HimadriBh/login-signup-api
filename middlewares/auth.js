@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/userModel.js'
 
-export const auth = (req, res, next) => {
+const auth = (req, res, next) => {
     const authHeader = req.headers['authorization'];
-    const token = authHeader.split(' ')[1];
+    const token = authHeader && authHeader.split(' ')[1];
 
-    if(token === null) {
+    if(token == null) {
         res.status(401);
         res.json({ message: "No token found, not authorized!" })
     }
@@ -19,3 +19,4 @@ export const auth = (req, res, next) => {
 
     }
 }
+export default auth;
